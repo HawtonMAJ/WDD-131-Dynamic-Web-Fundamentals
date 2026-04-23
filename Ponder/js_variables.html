@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Variables</title>
+    <script>
+        //Javascript Land (trademark)
+        //Adds variables name and age and assigns them value
+        let name = "Mark";
+        let age = 33;
+        //Changes Name variable value
+        name = "Mark Hawton";
+        //Similar to print in python
+        console.log(name);
+        //constant variable, language enforced to not changed
+        const nameOfChurch = "The Church of Jesus Christ of Latter-day Saints";
+        //looks as though it will work but it will not
+        nameOfChurch = "The third Barbaras church of your mom";
+        //Shows that changing or making a variable inside of a different scope doesnt allow access
+        if (name === "Mark Hawton") {
+            let response = "Welcome, Mark Hawton"
+        }
+        console.log(response);
+        
+    </script>
 </head>
 <body>
     
