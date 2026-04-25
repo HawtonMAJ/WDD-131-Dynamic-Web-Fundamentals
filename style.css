@@ -16,3 +16,10 @@ header{
                 0px -3px 0 #000,
                 0px 3px 0 #000;
     }
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    font-size: 4vh;
+}
