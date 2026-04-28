@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Basics Ponder week 2</title>
+    <link rel="stylesheet" href="meta-css.css">
+</head>
+<body>
+    
+    <div id="content">
+        <h1>HTML, CSS, and JS</h1>
+        
+        <p>The foundational technologies that power websites and web applications</p>
+        <hr>
+        <img src="https://wddbyui.github.io/wdd131/images/trifecta.png" alt="JS, CSS, and HTML logos">
+        <div id="topics">
+            <h2>HyperText Markup Language</h2>
+            <ul class="list">
+                <li>Defines the structure and content of a web page.</li>
+                <li>Without HTML there's nothing for the browser to display.</li>
+            </ul>
+            <h2>Cascading Style Sheets</h2>
+            <ul class="list">
+                <li>Controls how the HTML elements look.</li>
+                <li>Without CSS pages look plain and unstyled.</li>
+            </ul>
+            <h2>JavaScript</h2>
+            <ul class="list">
+                <li>Adds interactivity and dynamic behavior.</li>
+                <li>Without JavaScript nothing on the page responds dynamically to user actions.</li>
+            </ul>
+        </div>
+    </div>
+                
+    <script>
+        // Access Html script in JS, use the document object
+        
+        // querySelector use CSS selectors, only returns for the first seen
+        let firstList = document.querySelector(".list");
+        firstList.style.backgroundColor = "red";
+
+        // getElementById directly grabs Id'd elemnts and so doesn't need a # in front of the name
+        let content = document.getElementById("content");
+        content.style.backgroundColor = "blue";
+
+        document.querySelector("img").setAttribute("src", "https://img.pokemondb.net/sprites/x-y/shiny/poochyena.png");
+        document.querySelector("img").setAttribute("alt", "Best Boy");
+
+        document.querySelector("h1").textContent = "POOCHYENA BEST BOY";
+        document.querySelector("p").textContent = "SHINY EVEN BETTER";
+        document.getElementsByTagName("h1")[0].textContent = "I LOVE POOCHYENA";
+
+        console.log(document.getElementById("content"));
+    </script>
+</body>
+</html>
