@@ -38,11 +38,11 @@
         
         // querySelector use CSS selectors, only returns for the first seen
         let firstList = document.querySelector(".list");
-        firstList.style.backgroundColor = "red";
+        firstList.style.backgroundColor = "beige";
 
         // getElementById directly grabs Id'd elemnts and so doesn't need a # in front of the name
         let content = document.getElementById("content");
-        content.style.backgroundColor = "blue";
+        content.style.backgroundColor = "gold";
 
         document.querySelector("img").setAttribute("src", "https://img.pokemondb.net/sprites/x-y/shiny/poochyena.png");
         document.querySelector("img").setAttribute("alt", "Best Boy");
@@ -52,6 +52,27 @@
         document.getElementsByTagName("h1")[0].textContent = "I LOVE POOCHYENA";
 
         console.log(document.getElementById("content"));
+
+        // Defining a function
+        function changeTheme(){
+            // ... code to change theme here
+        }
+        // if(something occurs) {
+        // changeTheme();
+        // }
+        let selectElem = document.querySelector('#theme-select');
+
+        //Event to listen for, function name to execute when event is detected
+        selectElem.addEventListener('change',changeTheme);
+
+        if (current === 'ocean') {
+            //do something
+
+        }   else if (current === 'forest'){
+            //do something else 
+        }   else {
+            //default reaction if no matches
+        }
     </script>
 </body>
 </html>
