@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Statement</title>
+    <link rel="stylesheet" href="mission_style.css">
+</head>
+<header>
+    <select>
+
+    <option>Choose Mode</option>
+
+    <option value="dark">Dark</option>
+
+    <option value="light">Light</option>
+
+    </select>  
+</header>
+<body>
+
+    <b class="Mission">MISSION STATEMENT</b>
+    <b class="Title">Brigham Young University-Idaho</b>
+    <b class="Paragraph">
+        Brigham Young University-Idaho was founded and is supported and guided by The Church of Jesus Christ of Latter-day Saints. Its mission is to develop disciples of Jesus Christ who are leaders in their homes, the Church, and their communities.   
+    </b>
+    <b class="Subtext">The university does this by:</b>
+    <ol>
+        <li>Building testimonies of the restored gospel of Jesus Christ and fostering its principles in a wholesome academic, cultural, and social environment.</li>
+        <li>Providing a high-quality education that prepares students of diverse interests and abilities for lifelong learning and employment.</li>
+        <li>Serving as many students as possible within resource constraints.</li>
+        <li>Delivering education that is affordable for students and the Church.</li>
+    </ol>
+    <img src="../Mission/byui-logo-blue.webp" alt="BYU Idaho">
+    <script defer>
+        
+        let selectElem = document.querySelector('select');
+        let logo = document.querySelector('img');
+
+        selectElem.addEventListener('change', changeTheme);
+
+        function changeTheme() {
+            let current = selectElem.value;
+            if (current == 'dark') {
+                // code for changes to colors and logo
+                document.body.style.backgroundColor='gray';
+                document.body.style.color = "white";
+                logo.src='../Mission/byui-logo-white.png'
+                
+            } else {
+                // code for changes to colors and logo
+                document.body.style.backgroundColor='white';
+                document.body.style.color = "black";
+                logo.src='../Mission/byui-logo-blue.webp'
+            }
+        }           
+                            
+    </script>
+</body>
+</html>

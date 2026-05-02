@@ -27,7 +27,6 @@ body {
 .Paragraph{
     font-size: 2vh;
     font-weight: 600;
-    color: rgb(0, 0, 0);
     text-align: left;
     margin-left: 13vw;
     margin-right: 13vw;
@@ -36,7 +35,6 @@ body {
 .Subtext{
     font-size: 2vh;
     font-weight: 100;
-    color: rgb(0, 0, 0);
     text-align: left;
     margin-left: 13vw;
     margin-right: 13vw;
@@ -45,7 +43,6 @@ body {
 ol{
     font-size: 2vh;
     font-weight: 100;
-    color: rgb(0, 0, 0);
     text-align: left;
     margin-left: 13vw;
     margin-right: 13vw;
