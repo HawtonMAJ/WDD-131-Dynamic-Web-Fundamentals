@@ -1,11 +1,10 @@
 // Retrieve the form from the dom
-const form = document.querySelector("#fsyForm");
 
 // Helper function
 function getCheckCampi(campi){
     return Array.from(campi)
-            .filter(campus => campus.checked)
-            .map(campus => campus.value);
+    .filter(campus => campus.checked)
+    .map(campus => campus.value);
 }
 
 function isdatevalid() {
@@ -14,26 +13,106 @@ function isdatevalid() {
     return date > todaysDate;
 }
 
-// if the user selects one campus but doesnt pick any campus, say "please pick a campus"
-form.addEventListener("submit", event =>{
+const form = document.querySelector("#fsyForm");
+const travelRange = document.querySelector("#travelRange");
+const notesContainer = document.querySelector("#notesContainer");
+const notes = document.querySelector("#notes");
+const output = document.querySelector("#output");
+const campusBoxes = document.querySelectorAll('input[name="campus"]');
+
+form.addEventListener("submit", event => {
+    form.preventDefault()
+})
+
+function updateNotesField() {
+    const value = travelRange.value;
+
+    if (value === "many") {
+        notesContainer.style.display = "block";
+    } else {
+        notesContainer.style.display = "none";
+        notes.value = "";
+    }
+}
+
+travelRange.addEventListener("change", updateNotesField);
+updateNotesField();
+
+
+// Ensure they choose a date later than the current date
+function isPastDate(value) {
+    const today = new Date();
+    const chosen = new Date(value);
+    return chosen < today;
+}
+
+function getSelectedCampuses() {
+    //.from converts a NodeList into a real array, so then you can use .filter and .map
+    return Array.from(campusBoxes)
+    .filter(box => box.checked)
+    .map(box => box.value); 
+}
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    output.textContent = "";
+    
+    const firstName = form.firstName.value.trim();
+    const lastName = form.lastName.value.trim();
+    const email = form.email.value.trim();
+    const type = form.travelRange.value;
+    const availableDate = form.availableDate.value;
+    const selectedCampuses = getSelectedCampuses();
+    const note = form.notes.value.trim();
+    
+    // Validate the input
+    // Let the user know to select at least one campus
+    // if the user selects one campus but doesnt pick any campus, say "please pick a campus"
     const numberOfCampi = form.travelRange.value;
     const campi = form.campus;
     if (numberOfCampi === "one" &&
         getCheckCampi(campi).length == 0) {
             console.log("bad job bro")
-            document.getElementById("output").textContent = "Please pick on and only one campus por favor"
+            document.getElementById("output").textContent = "Please pick at least one campus"
+            return;
     }
     if (!isdatevalid()){
         document.getElementById("output").textContent = "Please pick a non time traveling date"
     }
-});
+    
+    
+    if (type === "many") {
+        // Let the user know if they choose many campuses but didn't put a note that they need to add a note
+        if (note === "") {
+            output.textContent =
+            "Please explain your travel needs in the notes field.";
+            return;
+        }
+        
+        //Let the user know if they choose many campus but only had one campus selected that they need to choose at least two campuses
+        if (selectedCampuses.length < 2) {
+            output.textContent =
+            "Please select at least two campi.";
+            return;
+        }
+    }
+    
+  
 
-// Add event listener for when someone press someone press submit
-form.addEventListener("submit", event => {
-    // Grab the values from the form before they go to the query parameters
-    event.preventDefault();
-    console.log(event);
-    console.log(form.firstName.value);
-    console.log(form.lastName.value);
-    console.log(form.email.value);
+  if (isPastDate(availableDate)) {
+    output.textContent = "Please pick a non time traveling date";
+    return;
+  }
+
+  output.innerHTML = `
+  <h2>Preference Submitted</h2>
+  <p>${firstName} ${lastName}</p>
+  <p>Email: ${email}</p>
+  <p>Availability: ${availableDate}</p>
+  <p>Campuses: ${selectedCampuses.join(", ")}</p>
+  <p>Preference Level: ${type}</p>
+  `;
+
+  form.reset();
+  updateNotesField();
 });
