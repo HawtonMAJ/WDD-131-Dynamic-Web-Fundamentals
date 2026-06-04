@@ -1,6 +1,24 @@
 // Retrieve the form from the dom
 const form = document.querySelector("#fsyForm");
 
+// Helper function
+function getCheckCampi(campi){
+    return Array.from(campi)
+            .filter(campus => campus.checked)
+            .map(campus => campus.value);
+}
+
+// if the user selects one campus but doesnt pick any campus, say "please pick a campus"
+form.addEventListener("submit", event =>{
+    const numberOfCampi = form.travelRange.value;
+    const campi = form.campus;
+    if (numberOfCampi === "one" &&
+        getCheckCampi(campi).length == 0) {
+            console.log("bad job bro")
+            document.getElementById("output").textContent = "Please pick on and only one campus por favor"
+    }
+});
+
 // Add event listener for when someone press someone press submit
 form.addEventListener("submit", event => {
     // Grab the values from the form before they go to the query parameters
