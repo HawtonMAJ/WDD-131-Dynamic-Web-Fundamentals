@@ -8,6 +8,12 @@ function getCheckCampi(campi){
             .map(campus => campus.value);
 }
 
+function isdatevalid() {
+    const date = document.getElementById("avaiableDate");
+    const todaysDate = new Date();
+    return date > todaysDate;
+}
+
 // if the user selects one campus but doesnt pick any campus, say "please pick a campus"
 form.addEventListener("submit", event =>{
     const numberOfCampi = form.travelRange.value;
@@ -16,6 +22,9 @@ form.addEventListener("submit", event =>{
         getCheckCampi(campi).length == 0) {
             console.log("bad job bro")
             document.getElementById("output").textContent = "Please pick on and only one campus por favor"
+    }
+    if (!isdatevalid()){
+        document.getElementById("output").textContent = "Please pick a non time traveling date"
     }
 });
 
